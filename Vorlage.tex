@@ -1,0 +1,177 @@
+\documentclass[12pt,a4paper,twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+	% if you don't use \usepackage[T1]{fontenc},
+    % - Words containing accented characters (ö,...) cannot be automatically hyphenated,
+    % - You cannot properly copy-and-paste such words from the output (DVI/PS/PDF),
+    % - Characters like the pipe sign, less than and greater sign give unexpected results in text.
+\usepackage{lmodern}  % Vector Fonts even when using T1 !
+\usepackage[ngerman]{babel}
+\usepackage[dvipsnames,cmyk]{xcolor} % xcolor and more colornames, cymk for printing
+\usepackage{cmap} % pro­vides char­ac­ter map ta­bles, which makes PDFs search­able and copy-able (I don't see a difference yet!!!)
+\usepackage{graphicx}   % for /includegraphics command
+\usepackage{cancel}		% for making a stroke through a calculation
+%\usepackage{tensor}    % enables indices in all for corners of a variable
+%\usepackage{pdflscape}	% rotate site by 90° with \begin{landscape}
+\usepackage{url}		% for \url{} command to not get problems with :\\ and other symbols
+\usepackage{hyperref}	% for labellinks and more
+\usepackage[labelfont=bf]{caption} % allows captions in non-figure environments with \captionof and \captionsetup
+\usepackage{siunitx}    % SI units paper conform with \SI{3}{\nano\seconds}
+
+\usepackage[backend=bibtex]{biblatex}% ist default style=numeric,
+\usepackage{bibgerm}
+\addbibresource{literatur.bib}
+
+
+\usepackage{listings}   % source code listings
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+%  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  %frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+% allow direct input of greek letters and similar. Also add some own unicode chars additionally to uniinput
+\usepackage{uniinput}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2115}{\ensuremath{\mathbb N}}
+\DeclareUnicodeCharacter{2124}{\ensuremath{\mathbb Z}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% own commands and formattings 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength\parindent{0pt} % stop indenting every paragraph by 1cm. It looks awful!
+
+% some mathematical functions
+\newcommand{\arsinh}{\text{arsinh}\,}
+\newcommand{\arcosh}{\text{arcosh}\,}
+\newcommand{\arcoth}{\text{arcoth}\,}
+\newcommand{\artanh}{\text{artanh}\,}
+\newcommand{\atan}{\text{atan}\,} %short for ArcTan
+\newcommand{\asin}{\text{asin}\,}
+\newcommand{\acos}{\text{acos}\,}
+
+\newcommand{\de}{\text{d}}                      % integration d
+\newcommand{\const}{\text{\small const.}}
+\renewcommand{\nabla}{\overrightarrow{\bigtriangledown}}
+\newcommand{\laplace}{\bigtriangleup}
+\newcommand{\dalembert}{\square}
+\newcommand{\affects}[1]{\overset{\downarrow}{#1}} % arrow pointing down to variables affected bei DOP
+\newcommand{\fpart}[2]{\frac{\partial #1}{\partial #2}} 
+\newcommand{\ftdif}[2]{\frac{\de #1}{\de #2}}      % short for e.g. df/dx
+\newcommand{\slfrac}[2]{\left.#1\middle/#2\right.} % slanted fraction like 3/4 (slash sign)
+
+\usepackage[backend=bibtex]{biblatex}% ist default style=numeric,
+\usepackage{bibgerm}
+\addbibresource{literatur.bib}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% main part
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\rule{\textwidth}{3px}
+\Huge{
+Fortgeschrittenenpraktikum:\\
+Optische Emissions- und Absorptionsspektren}\\[-12pt]
+\rule{\textwidth}{3px}\\[3cm]
+
+\vfill
+
+\large
+\begin{tabular}{rl}
+	Protokoll von: & Maximilian Knespel\\
+	& Konstantin Ruffert\\
+	Betreuer: & Andreas Mischok\\ %Andreas.Mischok@iapp.de
+	Durchführung: & 16.1.2014 ab 8:00\\
+	Ort: & BEY/91
+\end{tabular}\\[3cm]
+{\large \today}
+\end{center}
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Einleitung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Versuchsaufbau}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Auswertung}
+
+\begin{eqnarray}
+	\label{eq:n}
+	 a = b
+\end{eqnarray}
+
+\begin{figure}
+	\centering
+	\begin{minipage}{0.7 \linewidth}
+		\includegraphics[width=\linewidth]{Image.pdf}
+	\end{minipage}
+	\caption{captiontext}
+	\label{fig:RTn}
+\end{figure}
+
+
+\subsection{Metallinterferenzfilter}
+
+Text ....\\
+
+% add image(s) on one line without figure-environment, to place it exactly where you want
+\begin{center}
+	\centering
+	\captionsetup{type=figure}
+	\begin{minipage}{0.45 \linewidth}
+		\includegraphics[width=\linewidth]{ImageLeft.pdf}
+	\end{minipage}
+	\begin{minipage}{0.45 \linewidth}
+		\includegraphics[width=\linewidth]{ImageRight.pdf}
+	\end{minipage}
+	\captionof{figure}{...}
+	\label{fig:figlabel}
+\end{center}
+
+\newpage
+\printbibliography
+
+\end{document}
